@@ -99,6 +99,22 @@ fun CyclesScreen(modifier: Modifier = Modifier){
 
         Button(
             onClick = {
+                val n = input.toIntOrNull()
+
+                if (n != null && n >= 1){
+                    var sum = 0.0
+                    var term = 1.0
+
+                    for (i in 1..n){
+                        term /= i
+                        sum += term
+                    }
+
+                    result = "Результат: %.10f".format(
+                            java.util.Locale.US,
+                            sum
+                    )
+                }
             },
             modifier = Modifier
                 .width(270.dp)
