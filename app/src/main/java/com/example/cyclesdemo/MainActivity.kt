@@ -61,7 +61,7 @@ fun CyclesScreen(modifier: Modifier = Modifier){
     var result by remember { mutableStateOf("")}
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.White)
             .padding(24.dp),
@@ -99,9 +99,25 @@ fun CyclesScreen(modifier: Modifier = Modifier){
 
         Button(
             onClick = {
-                val n = input.toIntOrNull()
+                val n = input.trim().toIntOrNull()
 
-                if (n != null && n >= 1){
+                if (input.isBlank()){
+                    result = "Введите число"
+                }
+
+                else if (n == null){
+                    result = "Введите целое число"
+                }
+
+                else if (n<1){
+                    result = "Введите натуральное число"
+                }
+
+                else if (n>1000){
+                    result = "Слишком большое число (максимум 1000)"
+                }
+                
+                else{
                     var sum = 0.0
                     var term = 1.0
 
@@ -111,8 +127,8 @@ fun CyclesScreen(modifier: Modifier = Modifier){
                     }
 
                     result = "Результат: %.10f".format(
-                            java.util.Locale.US,
-                            sum
+                        java.util.Locale.US,
+                        sum
                     )
                 }
             },
