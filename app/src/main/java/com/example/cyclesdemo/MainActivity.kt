@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -62,15 +63,15 @@ fun CyclesScreen(modifier: Modifier = Modifier){
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp)
-            .background(Color.White),
+            .background(Color.White)
+            .padding(24.dp),
 
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ){
         Text(
             text = "Вычисление",
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.headlineMedium
         )
 
         Spacer(modifier = Modifier.height(5.dp))
@@ -90,12 +91,33 @@ fun CyclesScreen(modifier: Modifier = Modifier){
             label = { Text("Введите натуральное число n") },
             keyboardOptions = KeyboardOptions(
                 keyboardType = KeyboardType.Number
-            )
+            ),
+            modifier = Modifier.width(270.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        Button(
+            onClick = {
+            },
+            modifier = Modifier
+                .width(270.dp)
+                .height(50.dp)
+        ) {
+            Text("Вычислить")
+        }
 
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = if (result.isBlank()) {
+                "Здесь появится результат"
+            } else {
+                result
+            },
+            style = MaterialTheme.typography.bodyLarge,
+            color = Color(0xFF424242)
+        )
     }
 }
 
